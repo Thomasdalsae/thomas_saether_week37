@@ -75,7 +75,7 @@ void task2() {
 		}
 		std::cout << std::endl;
 	}
-
+	 
 	char b = _getch();
 
 	switch (b)
