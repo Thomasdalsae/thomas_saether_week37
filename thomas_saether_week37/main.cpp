@@ -5,7 +5,6 @@
 void task1();
 void task2();
 
-
 int main() {
 	//task1();
 	task2();
@@ -60,34 +59,121 @@ void task1() {
 
 }
 void task2() {
-	std::vector<std::vector<int>>board;
-	char movement{};
-	std::vector<int>player = { 2,5 };
+
+	void boardLayout(std::vector<std::vector<char>>board);
+    std::vector<std::vector<char>>board;
+	std::vector<int> playerPos = { 0,0 };
+	
+
+	
 
 
 	for (int row = 0; row < 10; row++)
 	{
-		board.push_back(std::vector<int>{});
+		board.push_back(std::vector<char>{});
 		for (int col = 0; col < 10; col++)
 		{
 			board[row].push_back('-');
-			std::cout << " # ";
+			
+
+			
 		}
+		
+	}
+	
+
+	board[5][5] = '\\';
+	board[2][4] = '/';
+	board[7][4] = 'G';
+	board[playerPos[0]][playerPos[1]] = 'X';
+	boardLayout(board);
+
+	while (true)
+	{
+		
+		
+		
+		
+		
+			board[playerPos[0]][playerPos[1]] = '-';
+		
+		
+		char b = _getch();
+
+		switch (b)
+		{
+		case 'w': case 'W':
+
+
+			playerPos[1] += -1;
+			
+
+			break;
+
+		case 's': case 'S':
+			playerPos[1] += 1;
+	
+			break;
+
+		case 'a': case 'A':
+
+			playerPos[0] += -1;
+			
+			break;
+		case 'd': case 'D':
+			playerPos[0] += 1;
+			
+				
+			break;
+
+		default:
+			break;
+		}
+
+
+		if (board[playerPos[0]][playerPos[1]] == '\\')
+		{
+
+			playerPos[1] += -1;
+
+		}
+		else if (board[playerPos[0]][playerPos[1]] == '/')
+		{
+			playerPos[1] += 1;
+		}
+		else if (board[playerPos[0]][playerPos[1]] == 'G')
+		{
+			exit(0);
+		}
+
+		board[playerPos[0]][playerPos[1]] = 'X';
+
+		
+		system("cls");
+		
+		boardLayout(board);
+		
+	}
+}
+
+
+void boardLayout(std::vector<std::vector<char>> aBoard) {
+
+	for (int i = 0; i < 10; i++)
+	{
+		
+		for (int j = 0; j < 10; j++)
+		{
+			std::cout << " " << aBoard[j][i] << " ";
+
+
+
+		}
+		
 		std::cout << std::endl;
 	}
-	 
-	char b = _getch();
 
-	switch (b)
-	{		
-	case 'w' || 'W':
-		player[0] += 1;
-		
-	default:
-		break;
-	}
-
-
-
-
+	
 }
+
+
