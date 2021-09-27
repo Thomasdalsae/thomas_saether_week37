@@ -1,13 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <conio.h>
+#include <random> 
+
 
 void task1();
 void task2();
+void task3();
+void task4();
+int randomizer();
+void diceRoll(std::vector<int>&);
 
 int main() {
 	//task1();
-	task2();
+	//task2();
+	//task3();
+	task4();
 	return 0;
 }
 
@@ -155,8 +163,6 @@ void task2() {
 		
 	}
 }
-
-
 void boardLayout(std::vector<std::vector<char>> aBoard) {
 
 	for (int i = 0; i < 10; i++)
@@ -175,5 +181,113 @@ void boardLayout(std::vector<std::vector<char>> aBoard) {
 
 	
 }
+void task3() {
 
 
+
+	struct People {
+
+		std::string name;
+		int phoneNr{};
+
+	};
+	std::vector<People>Person;
+	People temp1;
+
+	char answer{};
+	int i{};
+	
+	while (i < 10 && answer != 'n')
+	{
+		std::cout << "Do you want to add a person? ";
+		std::cin >> answer;
+
+		switch (tolower(answer))
+		{
+
+
+		case 'y':
+				std::cout << "Enter the name :";
+				std::cin >> temp1.name;
+				std::cout << "Enter PhoneNr :";
+				std::cin >> temp1.phoneNr;
+
+				Person.push_back(temp1);
+
+				i++;
+				
+				break;
+			
+		case 'n': 
+			break;
+		default:
+			break;
+		}		
+	}
+for (size_t j = 0; j < i; j++) {
+	std::cout << Person[j].name << std::endl;
+	std::cout << Person[j].phoneNr << std::endl;
+}
+}
+
+
+void task4() {
+
+	std::vector<int>Dices;
+	diceRoll(Dices);
+
+	for (int j = 0; j < Dices.size(); j++)
+	{
+		std::cout << Dices[j] << std::endl;
+		
+		
+	}
+
+
+
+
+}
+
+
+
+
+void diceRoll(std::vector<int>&Dices) {
+
+
+	int dice;
+
+	for (size_t i = 0; i < 5; i++)
+	{
+		
+		
+		Dices.push_back(randomizer());
+	
+	}
+	
+}
+
+int randomizer() {
+	std::random_device rd{};
+	
+	std::mt19937 engine(rd());
+	
+	std::uniform_int_distribution<int> dist(0, 6);
+	
+	int x = dist(engine);
+
+	return x;
+
+}
+
+
+/*How randomizer workd
+// Use random_device to generate a seed for Mersenne twister engine.
+std::random_device rd{};
+// Use Mersenne twister engine to generate pseudo-random numbers.
+std::mt19937 engine(rd());
+// "Filter" MT engine's output to generate pseudo-random int values,
+// **uniformly distributed** on the closed interval [0, 6].
+// (Note that the range is [inclusive, inclusive].)
+std::uniform_int_distribution<int> dist(0, 6);
+// Generate pseudo-random number.
+int x = dist(engine);*/
