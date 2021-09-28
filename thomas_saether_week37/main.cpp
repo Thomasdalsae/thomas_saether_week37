@@ -13,15 +13,16 @@ void diceRoll(std::vector<int>&);
 
 int main() {
 	//task1();
-	//task2();
+	task2();
 	//task3();
-	task4();
+	//task4();
 	return 0;
 }
 
 void task1() {
 
 	int numberOne{};
+	//this is basically where i put all the operations
 	char doerer{};
 	int numberTwo{};
 	char input{};
@@ -75,7 +76,7 @@ void task2() {
 
 	
 
-
+	//prepears the vector 10X10
 	for (int row = 0; row < 10; row++)
 	{
 		board.push_back(std::vector<char>{});
@@ -89,11 +90,15 @@ void task2() {
 		
 	}
 	
-
+	//Location to the symbol (make the player go up)
 	board[5][5] = '\\';
+	//Location to the symbol (makes the player go down)
 	board[2][4] = '/';
+	//Location to the symbol (makes the player exit the program)
 	board[7][4] = 'G';
+	//Location start for the player
 	board[playerPos[0]][playerPos[1]] = 'X';
+	//Prints a copy that updates
 	boardLayout(board);
 
 	while (true)
@@ -105,11 +110,12 @@ void task2() {
 		
 			board[playerPos[0]][playerPos[1]] = '-';
 		
-		
+		//command that makes the player input work instantly (no need to press enter each time)
 		char b = _getch();
 
 		switch (b)
 		{
+			//Player goes up
 		case 'w': case 'W':
 
 
@@ -117,17 +123,18 @@ void task2() {
 			
 
 			break;
-
+			//Player goes down
 		case 's': case 'S':
 			playerPos[1] += 1;
 	
 			break;
-
+			//Player goes left
 		case 'a': case 'A':
 
 			playerPos[0] += -1;
 			
 			break;
+			//Player goes right
 		case 'd': case 'D':
 			playerPos[0] += 1;
 			
@@ -138,22 +145,25 @@ void task2() {
 			break;
 		}
 
-
+		
+		//This forces the player to go up a lvl. the players current location (inn the vector) pluss one in the row.
 		if (board[playerPos[0]][playerPos[1]] == '\\')
 		{
 
 			playerPos[1] += -1;
 
 		}
+		//This forces the player to go down a lvl. the players current location (inn the vector) minus one in the row.
 		else if (board[playerPos[0]][playerPos[1]] == '/')
 		{
 			playerPos[1] += 1;
 		}
+		//exits the program
 		else if (board[playerPos[0]][playerPos[1]] == 'G')
 		{
 			exit(0);
 		}
-
+		//This is to keep track on where the location of the player is.
 		board[playerPos[0]][playerPos[1]] = 'X';
 
 		
@@ -163,6 +173,8 @@ void task2() {
 		
 	}
 }
+
+//this is the game board
 void boardLayout(std::vector<std::vector<char>> aBoard) {
 
 	for (int i = 0; i < 10; i++)
@@ -184,19 +196,20 @@ void boardLayout(std::vector<std::vector<char>> aBoard) {
 void task3() {
 
 
-
+	//The struct people contains the information i want on each person.
 	struct People {
 
 		std::string name;
 		int phoneNr{};
 
 	};
+	//this basically means that each person will contain the decidted information inn (people)
 	std::vector<People>Person;
 	People temp1;
 
 	char answer{};
 	int i{};
-	
+	//keeps the loop going aslong as needed.
 	while (i < 10 && answer != 'n')
 	{
 		std::cout << "Do you want to add a person? ";
@@ -224,7 +237,8 @@ void task3() {
 			break;
 		}		
 	}
-for (size_t j = 0; j < i; j++) {
+	//prints all the information inn the vector.
+	for (size_t j = 0; j < i; j++) {
 	std::cout << Person[j].name << std::endl;
 	std::cout << Person[j].phoneNr << std::endl;
 }
