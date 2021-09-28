@@ -13,9 +13,9 @@ void diceRoll(std::vector<int>&);
 
 int main() {
 	//task1();
-	task2();
+	//task2();
 	//task3();
-	//task4();
+	task4();
 	return 0;
 }
 
@@ -246,19 +246,50 @@ void task3() {
 
 
 void task4() {
-
+	char input{};
+	int *hold1{};
 	std::vector<int>Dices;
-	diceRoll(Dices);
+	int diceSix{};
+	int dicePair{};
+	
+	std::cout << "Do you want to roll the dices" << std::endl;
+	std::cin >> input;
+	
+	
 
-	for (int j = 0; j < Dices.size(); j++)
+	if (toupper(input) == 'Y')
 	{
-		std::cout << Dices[j] << std::endl;
-		
-		
+		diceRoll(Dices);
+
+		for (int j = 0; j < Dices.size(); j++)
+		{
+			std::cout << "Dice"<< j + 1 << " :" << Dices[j] << std::endl << std::endl;
+			if (Dices[j] == 6)
+			{
+				diceSix++;
+			}
+		}
+		std::cout << diceSix;
 	}
 
+	for (size_t i = 0; i < sizeof(Dices[0]) / sizeof(Dices[0]); i++)
+	{
+		if (Dices[i] == Dices[i] && Dices[i] == Dices[i])
+		{
+			dicePair++;
+
+		}
+
+		std::cout << dicePair;
 
 
+
+
+
+
+
+	}
+	
 
 }
 
