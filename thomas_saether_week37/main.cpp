@@ -247,53 +247,86 @@ void task3() {
 
 void task4() {
 	char input{};
-	int *hold1{};
+	char endGame = 'q';
+	int holdDice{};
+	int holdDicePosition = -1;
 	std::vector<int>Dices;
 	int diceSix{};
 	int dicePair{};
+
 	
 	std::cout << "Do you want to roll the dices" << std::endl;
 	std::cin >> input;
 	
 	
-
+	while (true)
+	{
+		//resets
+		Dices.clear();
+		diceSix = 0;
+		dicePair = 0;
 	if (toupper(input) == 'Y')
 	{
+		
 		diceRoll(Dices);
-
-		for (int j = 0; j < Dices.size(); j++)
+		//it's a saftey measure to avoid putting inn a held dice if not exist
+		if (holdDicePosition != -1)
 		{
-			std::cout << "Dice"<< j + 1 << " :" << Dices[j] << std::endl << std::endl;
-			if (Dices[j] == 6)
+			Dices[holdDicePosition] = holdDice;
+		}
+		//checks if there ar eany sixers and pairs.
+		for (int i = 0; i < Dices.size(); i++)
+		{
+			std::cout << "Dice"<< i + 1 << " :" << Dices[i] << std::endl << std::endl;
+			if (Dices[i] == 6)
 			{
 				diceSix++;
 			}
+			for (int j = i; j < Dices.size(); j++)
+			{
+				if (i != j)
+				{
+
+				if (Dices[i] == Dices[j])
+				{
+
+					dicePair++;
+
+				}
+				}
+			}
+			
+
+
+			
 		}
-		std::cout << diceSix;
+		std::cout << "How many SixDices  :" << diceSix <<std::endl;
+		std::cout << "How many DicePairs  :" << dicePair <<std::endl;
+
+		//saves the value and the position of the held dice.
+		std::cout << "Which dices do you want hold" << std::endl;
+		std::cin >> holdDicePosition;
+		holdDicePosition = holdDicePosition - 1;
+		holdDice = Dices[holdDicePosition];
+
 	}
 
-	for (size_t i = 0; i < sizeof(Dices[0]) / sizeof(Dices[0]); i++)
+	std::cout << "Do you want to roll again ?" << std::endl;
+	std::cin >> endGame;
+
+	if (toupper(endGame) == 'Y')
 	{
-		if (Dices[i] == Dices[i] && Dices[i] == Dices[i])
-		{
-			dicePair++;
-
-		}
-
-		std::cout << dicePair;
-
-
-
-
-
-
-
+		system("cls");
 	}
+	else
+	{
+		break;
+	}
+	}
+	
 	
 
 }
-
-
 
 
 void diceRoll(std::vector<int>&Dices) {
@@ -316,7 +349,7 @@ int randomizer() {
 	
 	std::mt19937 engine(rd());
 	
-	std::uniform_int_distribution<int> dist(0, 6);
+	std::uniform_int_distribution<int> dist(1, 6);
 	
 	int x = dist(engine);
 
@@ -325,7 +358,7 @@ int randomizer() {
 }
 
 
-/*How randomizer workd
+/*How randomizer workd(credits to anders for explaining)
 // Use random_device to generate a seed for Mersenne twister engine.
 std::random_device rd{};
 // Use Mersenne twister engine to generate pseudo-random numbers.
