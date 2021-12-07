@@ -1,21 +1,13 @@
-#include <iostream>
-#include <vector>
-#include <conio.h>
-#include <random> 
+#include "Declear.h"
 
 
-void task1();
-void task2();
-void task3();
-void task4();
-int randomizer();
-void diceRoll(std::vector<int>&);
+
 
 int main() {
 	//task1();
-	//task2();
+	task2();
 	//task3();
-	task4();
+	//task4();
 	return 0;
 }
 
@@ -266,18 +258,7 @@ void diceRoll(std::vector<int>&Dices) {
 	
 }
 
-int randomizer() {
-	std::random_device rd{};
-	
-	std::mt19937 engine(rd());
-	
-	std::uniform_int_distribution<int> dist(0, 6);
-	
-	int x = dist(engine);
 
-	return x;
-
-}
 
 
 /*How randomizer workd
